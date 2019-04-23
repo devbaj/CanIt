@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register | TrashCan</title>
+</head>
+<body>
+    
+    <div class="regform">
+        <h1 class="regform__title">Register</h1>
+            <form action="/register/process" method="post" class="regform__form">
+            {% csrf_token %}
+                <table class="regform__table">
+                    <tr class="regform__row">
+                        <td class="regform__item">First Name:</td>
+                        <td class="regform__item"><input type="text" name="fname" id="fname" class="regform__input"></td>
+                    </tr>
+                    <tr class="regform__row">
+                        <td class="regform__item">Last Name:</td>
+                        <td class="regform__item"><input type="text" name="lname" id="lname" class="regform__input"></td>
+                    </tr>
+                    <tr class="regform__row">
+                        <td class="regform__item">Username:</td>
+                        <td class="regform__item"><input type="text" name="username" id="username" class="regform__input"></td>
+                    </tr>
+                    <tr class="regform__row">
+                        <td class="regform__item">Email:</td>
+                        <td class="regform__item"><input type="text" name="email" id="email" class="regform__input"></td>
+                    </tr>
+                    <tr class="regform__row">
+                        <td class="regform__item">Password:</td>
+                        <td class="regform_item"><input type="password" name="pw" id="pw" class="regform__input"></td>
+                    </tr>
+                    <tr class="regform__row">
+                        <td class="regform__item">Confirm Password:</td>
+                        <td class="regform__item"><input type="password" name="pw-conf" id="pw-conf" class="regform__input"></td>
+                    </tr>
+                </table>
+                <button type="submit" class="regform__button">Register</button>
+            </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{user.username}}'s Profile | TrashCan</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <!-- nav and stuff -->
+
+        <div class="profile">
+            <h1 class="profile__title">{{user.username}}'s Profile</h1>
+            <table class="profile__table">
+                <tr class="profile__row">
+                    <td class="profile__item">Name:</td>
+                    <td class="profile__insert">{{user.first_name}} {{user.last_name}}</td>
+                </tr>
+                <tr class="profile__row">
+                    <td class="profile__item">Email:</td>
+                    <td class="profile__insert">{{user.email}}</td>
+                </tr>
+                <tr class="profile__row">
+                    <td class="profile__item">Member since:</td>
+                    <td class="profile__insert">{{user.created_at}}</td>
+                </tr>
+                <tr class="profile__row">
+                    <td class="profile__item">Last profile update:</td>
+                    <td class="profile__insert">{{user.updated_at}}</td>
+                </tr>
+            </table>
+        </div>
+        {% if "userid" in request.session %}
+            {% if user.id == request.session.userid %}
+                <a href="/profile/edit" class="profile__editbtn">Edit Profile</a>
+            {% else %}
+                --FOLLOW/ADDFRIEND BUTTON--
+            {% endif %}
+        {% endif %}
+    </div>
+
+</body>
+</html>
