@@ -8,38 +8,43 @@
 </head>
 <body>
     
-    <div class="regform">
-        <h1 class="regform__title">Register</h1>
-            <form action="/register/process" method="post" class="regform__form">
-            {% csrf_token %}
-                <table class="regform__table">
-                    <tr class="regform__row">
-                        <td class="regform__item">First Name:</td>
-                        <td class="regform__item"><input type="text" name="fname" id="fname" class="regform__input"></td>
-                    </tr>
-                    <tr class="regform__row">
-                        <td class="regform__item">Last Name:</td>
-                        <td class="regform__item"><input type="text" name="lname" id="lname" class="regform__input"></td>
-                    </tr>
-                    <tr class="regform__row">
-                        <td class="regform__item">Username:</td>
-                        <td class="regform__item"><input type="text" name="username" id="username" class="regform__input"></td>
-                    </tr>
-                    <tr class="regform__row">
-                        <td class="regform__item">Email:</td>
-                        <td class="regform__item"><input type="text" name="email" id="email" class="regform__input"></td>
-                    </tr>
-                    <tr class="regform__row">
-                        <td class="regform__item">Password:</td>
-                        <td class="regform_item"><input type="password" name="pw" id="pw" class="regform__input"></td>
-                    </tr>
-                    <tr class="regform__row">
-                        <td class="regform__item">Confirm Password:</td>
-                        <td class="regform__item"><input type="password" name="pw-conf" id="pw-conf" class="regform__input"></td>
-                    </tr>
-                </table>
-                <button type="submit" class="regform__button">Register</button>
-            </form>
+    <div class="form">
+    {% if messages %}
+        <div class="form__messages">
+            {% for message in messages %}
+            <p class="form__message--{{message.tags}}">{{message}}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h1 class="form__title">Register</h1>
+        <form action="/register/process" method="post" class="form__form">
+        {% csrf_token %}
+            <div class="form__row">
+                <p class="form__label">First Name:</p>
+                <input type="text" name="fname" id="fname" class="form__input">
+            </div>
+            <div class="form__row">
+                <p class="form__label">Last Name:</p>
+                <input type="text" name="lname" id="lname" class="form__input">
+            </div>
+            <div class="form__row">
+                <p class="form__label">Username:</p>
+                <input type="text" name="username" id="username" class="form__input">
+            </div>
+            <div class="form__row">
+                <p class="form__label">Email:</p>
+                <input type="text" name="email" id="email" class="form__input">
+            </div>
+            <div class="form__row">
+                <p class="form__label">Password:</p>
+                <input type="password" name="pw" id="pw" class="form__input">
+            </div>
+            <div class="form__row">
+                <p class="form__label">Confirm Password:</p>
+                <input type="password" name="pw-conf" id="pw-conf" class="form__input">
+            </div>
+            <button type="submit" class="form__submit">Register</button>
+        </form>
     </div>
 
 </body>
