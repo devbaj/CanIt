@@ -16,8 +16,10 @@ class UserManager(models.Manager):
             errors["name"] = "Both names must be at least 2 characters long."
         if not EMAIL_REGEX.match(postData["email"]):
             errors["email"] = "Invalid email address."
+        if len(postData["pw"]) < 8:
+            errors["pw"] = "Password must be at least 8 characters"
         if not PW_REGEX.match(postData["pw"]):
-            errors["pw"] = "Passwords must be at least 8 characters long and contain 1 uppercase, 1 lowercase, and 1 number"
+            errors["pw"] = "Passwords contain at least 1 uppercase, 1 lowercase, and 1 number"
         if postData["pw"] != postData["pw-conf"]:
             errors["pw_match"] = "Passwords do not match!"
         return errors
@@ -27,6 +29,7 @@ class UserManager(models.Manager):
             first_name = postData["fname"],
             last_name = postData["lname"],
             email = postData["email"],
+            username = postData["username"],
             pw_hash = pw_hash
         )
         return new_user
@@ -39,7 +42,10 @@ class UserManager(models.Manager):
         attempt = User.objects.filter(email=postData["email"])
         if len(attempt) != 1:
             return False
-        if bcrypt.checkpw(postData["pw"].encode(), attempt[0].pw_hash.encode()):
+        entered_pw = postData["pw"].encode()
+        attempt_pw = attempt[0].pw_hash[2: len(attempt[0].pw_hash)-1]
+        attempt_pw = attempt_pw.encode()
+        if bcrypt.checkpw(entered_pw, attempt_pw):
             return True
         return False
     def get_id(self, postData):
