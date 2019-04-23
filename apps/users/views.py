@@ -10,10 +10,7 @@ def reg_form(request):
     return render(request, "users/regform.html")
 
 def reg_process(request):
-    if not User.objects.is_original("email", request.POST["email"]):
-        messages.error(request, "User already exists")
-        return redirect("/register")
-    errors = User.objects.basic_validator(request.POST)
+    errors = User.objects.full_validation(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
@@ -42,5 +39,36 @@ def logout_process(request):
     messages.success(request, "Logged out")
     return redirect("/")
 
+def not_logged(request):
+    messages.error(request, "Not logged in")
+    return redirect("/")
+
 def profile_view(request, userid):
-    return render("users/profilepage.html")
+    if "userid" not in request.session:
+        return redirect("/nolog")
+    user = User.objects.get(id=request.session["userid"])
+    context = {
+        "user": user
+    }
+    return render(request, "users/profilepage.html", context)
+
+def edit_profile_form(request):
+    if "userid" not in request.session:
+        return redirect("nolog")
+    user = User.objects.get(id=request.session["userid"])
+    context = {
+        "user": user
+    }
+    return render(request, 'users/profileeditform.html', context)
+
+def edit_profile_process(request):
+    if "userid" not in request.session:
+        return redirect("/nolog")
+    errors = User.objects.edit_validation(request.session["userid"],request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect("/profile/edit")
+    User.objects.update(request.session["userid"], request.POST)
+    messages.success(request, "Info updated!")
+    return redirect(f"/profile/view/{request.session['userid']}")

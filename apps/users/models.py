@@ -10,12 +10,33 @@ PW_REGEX = re.compile(r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')
 # password validation - must be at least 8 char, have 1 number, 1 lowercase, 1 uppercase
 
 class UserManager(models.Manager):
-    def basic_validator(self, postData):
+    def edit_validation(self, userid, postData):
         errors = {}
         if len(postData["fname"]) < 2 or len(postData["lname"]) < 2:
             errors["name"] = "Both names must be at least 2 characters long."
         if not EMAIL_REGEX.match(postData["email"]):
             errors["email"] = "Invalid email address."
+        if not User.objects.is_original("email", postData["email"]):
+            email_match = User.objects.get(email=postData["email"])
+            if email_match.id != userid:
+                errors["email"] = "User with that email already exists"
+        if len(postData["username"]) < 3:
+            errors["username"] = "Username must be at least 3 characters"
+        if not User.objects.is_original("username", postData["username"]):
+            errors["username"] = "Username is taken"
+        return errors
+    def full_validation(self, postData):
+        errors = {}
+        if len(postData["fname"]) < 2 or len(postData["lname"]) < 2:
+            errors["name"] = "Both names must be at least 2 characters long."
+        if not EMAIL_REGEX.match(postData["email"]):
+            errors["email"] = "Invalid email address."
+        if not User.objects.is_original("email", postData["email"]):
+            errors["email"] = "User with that email already exists"
+        if len(postData["username"]) < 3:
+            errors["username"] = "Username must be at least 3 characters"
+        if not User.objects.is_original("username", postData["username"]):
+            errors["username"] = "Username is taken"
         if len(postData["pw"]) < 8:
             errors["pw"] = "Password must be at least 8 characters"
         if not PW_REGEX.match(postData["pw"]):
@@ -51,6 +72,13 @@ class UserManager(models.Manager):
     def get_id(self, postData):
         user = User.objects.get(email=postData["email"])
         return user.id
+    def update(self, userid, postData):
+        user = User.objects.get(id=userid)
+        user.first_name = postData["fname"]
+        user.last_name = postData["lname"]
+        user.email = postData["email"]
+        user.username = postData["username"]
+        user.save()
 
 class User(models.Model):
     first_name = models.CharField(max_length=45)
