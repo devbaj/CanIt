@@ -31,8 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
     'apps.map',
+=======
     'apps.users',
+>>>>>>> 818f7d7bed377d6cedb91028f714d80803dea966
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
