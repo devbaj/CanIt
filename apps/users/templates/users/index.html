@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home | TrashCan</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="navbar">
+            <!-- icon/logo? -->
+            __if userid in request.session__
+            <div class="navbar__dropdown">
+                <button class="navbar__dropdown-btn">My Profile
+                    <i class="fa fa-caret-down"></i>
+                    <!-- TODO: add css for dropdown -->
+                </button>
+                <div class="navbar__dropcontent">
+                    <a href="/profile/view" class="navbar__drop-link">View</a>
+                    <a href="/profile/edit" class="navbar_drop-link">Edit</a>
+                    <a href="/logout" class="navbar__drop-link">Log Out</a>
+                </div>
+            </div>
+            __else__
+            <a href="/register" class="navbar__link">Register</a>
+            <a href="/login" class="navbar__link">Log In</a>
+            __endif__
+        </div>
+
+    </div>
+
+</body>
+</html>
