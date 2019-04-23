@@ -12,7 +12,7 @@
 
         <div class="navbar">
             <!-- icon/logo? -->
-            __if userid in request.session__
+            {% if "userid" in request.session %}
             <div class="navbar__dropdown">
                 <button class="navbar__dropdown-btn">My Profile
                     <i class="fa fa-caret-down"></i>
@@ -24,10 +24,10 @@
                     <a href="/logout" class="navbar__drop-link">Log Out</a>
                 </div>
             </div>
-            __else__
+            {% else %}
             <a href="/register" class="navbar__link">Register</a>
             <a href="/login" class="navbar__link">Log In</a>
-            __endif__
+            {% endif %}
         </div>
 
     </div>
