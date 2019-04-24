@@ -57,10 +57,48 @@ body {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: flex-end; }
+  justify-content: flex-end;
+  padding: 1rem;
+  overflow: hidden; }
   .header__title {
     color: #eee;
     margin: 0 auto 0 1rem; }
+  .header__nav {
+    overflow: hidden; }
+  .header__menuicon {
+    background-color: #11538C;
+    color: #eee;
+    padding: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    cursor: pointer; }
+    .header__menuicon:hover {
+      background-color: #0F7CBF; }
+    .header__menuicon:focus {
+      background-color: #44B78B; }
+    .header__menuicon:before {
+      content: "My Profile";
+      display: inline-block; }
+    .header__menuicon:after {
+      display: inline-block; }
+  .header__menulink {
+    color: #333;
+    padding: 1rem;
+    text-decoration: none;
+    display: block; }
+    .header__menulink:hover {
+      background-color: #0F7CBF;
+      box-shadow: 0.2rem 0.2rem 0.5rem #333; }
+  .header__menulist {
+    z-index: 1; }
+    .header__menulist--hidden {
+      display: none; }
+    .header__menulist--visible {
+      display: block;
+      position: absolute;
+      list-style-type: none;
+      box-shadow: 0.2rem 0.2rem 0.5rem #333;
+      background-color: #eee; }
   .header__link {
     color: #eee;
     text-decoration: none;

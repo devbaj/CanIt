@@ -1,18 +1,21 @@
-$(document).ready(function(){
-    alert("doc ready");
+$(document).ready(function() {
+    console.log("doc ready");
+    // ======================================================== //
+    //                  LOAD PAGE COMPONENTS                    //
+    // ======================================================== //
     $.ajax({
         method: "GET",
         url: "/header"
     })
     .done(function(res) {
         $('#header').html(res)
+        console.log("header injected")
+    });
+    // ======================================================= //
+    //                    DROPDOWN MENU                        //
+    // ======================================================= //
+    $('.header').on('click', '#menu-icon', function() {
+        console.log("Dropdown button clicked")
+        $('.header__menu ul').toggleClass('header__menulist--hidden header__menulist--visible');
     })
-})
-
-function hideProfileMenu(){
-    let dropDownMenu = $('.header__dropdown');
-    let optionsMenu = $('.header__dropcontent');
-    if(dropDownMenu.css('display') != "none") {
-        dropDownMenu.css("display", "none");
-    }
-}
+});
