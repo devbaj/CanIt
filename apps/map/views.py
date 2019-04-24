@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse, redirect
 from .models import Marker
+import json
+
+
+
 
 def imbed(request):
 
@@ -13,5 +17,11 @@ def marker(request):
 
     return render(request, 'map/marker.html', context)
 
+def add_marker_process(request):
+    print('hello_world')
+    print(request.POST)
+    return redirect('/add_marker')
+
 def add_marker(request):
+
     return render(request, 'map/add_marker.html')

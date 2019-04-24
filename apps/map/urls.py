@@ -14,4 +14,5 @@ urlpatterns = [
     path('', views.imbed),
     path('marker', views.marker),
     path('add_marker', views.add_marker),
+    path('add_marker/process', views.add_marker_process),
 ]
