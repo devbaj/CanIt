@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log("doc ready");
     // ======================================================== //
     //                  LOAD PAGE COMPONENTS                    //
     // ======================================================== //
@@ -9,8 +8,14 @@ $(document).ready(function() {
     })
     .done(function(res) {
         $('#header').html(res)
-        console.log("header injected")
     });
+    $.ajax({
+        method: "GET",
+        url: "/footer"
+    })
+    .done(function(res) {
+        $('#footer').html(res)
+    })
     // ======================================================= //
     //                    DROPDOWN MENU                        //
     // ======================================================= //

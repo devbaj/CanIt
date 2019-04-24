@@ -80,5 +80,7 @@ def edit_profile_process(request):
 # JS AJAX VIEWS
 ########################
 def header(request):
-
     return render(request, "users/partials/header.html")
+
+def footer(request):
+    return render(request, "users/partials/footer.html")
