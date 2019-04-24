@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Profile | TrashCan</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
 </head>
 <body>
     
@@ -14,7 +16,7 @@
             {% if messages %}
                 <div class="form__messages">
                     {% for message in messages %}
-                        <p class="form__message--{{message.tags}}">{{message}}</p>
+                        <p class="form__messages--{{message.tags}}">{{message}}</p>
                     {% endfor %}
                 </div>
             {% endif %}

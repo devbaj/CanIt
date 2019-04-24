@@ -1,6 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
+* {
+  margin: 0;
+  padding: 0; }
+
 html {
   background-color: #F2EDDC; }
+
+.container {
+  width: 100rem;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas: "head  head  head  head  head" "nav   nav   nav   nav   right" "left  main  main  main  right" "left  main  main  main  right" "foot  foot  foot  foot  foot"; }
 
 html {
   font-size: 62.5%;
@@ -17,3 +29,10 @@ h2 {
 
 body {
   font-size: 2rem; }
+
+.form {
+  grid-area: main; }
+  .form__messages--success {
+    color: #357F2E; }
+  .form__messages--error {
+    color: #8C041D; }

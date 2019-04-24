@@ -5,47 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register | TrashCan</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
 </head>
 <body>
-    
-    <div class="form">
-    {% if messages %}
-        <div class="form__messages">
-            {% for message in messages %}
-            <p class="form__message--{{message.tags}}">{{message}}</p>
-            {% endfor %}
+    <div class="container">
+        <div class="form">
+        {% if messages %}
+            <div class="form__messages">
+                {% for message in messages %}
+                <p class="form__messages--{{message.tags}}">{{message}}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h1 class="form__title">Register</h1>
+            <form action="/register/process" method="post" class="form__form">
+            {% csrf_token %}
+                <div class="form__row">
+                    <p class="form__label">First Name:</p>
+                    <input type="text" name="fname" id="fname" class="form__input">
+                </div>
+                <div class="form__row">
+                    <p class="form__label">Last Name:</p>
+                    <input type="text" name="lname" id="lname" class="form__input">
+                </div>
+                <div class="form__row">
+                    <p class="form__label">Username:</p>
+                    <input type="text" name="username" id="username" class="form__input">
+                </div>
+                <div class="form__row">
+                    <p class="form__label">Email:</p>
+                    <input type="text" name="email" id="email" class="form__input">
+                </div>
+                <div class="form__row">
+                    <p class="form__label">Password:</p>
+                    <input type="password" name="pw" id="pw" class="form__input">
+                </div>
+                <div class="form__row">
+                    <p class="form__label">Confirm Password:</p>
+                    <input type="password" name="pw-conf" id="pw-conf" class="form__input">
+                </div>
+                <button type="submit" class="form__submit">Register</button>
+            </form>
         </div>
-    {% endif %}
-    <h1 class="form__title">Register</h1>
-        <form action="/register/process" method="post" class="form__form">
-        {% csrf_token %}
-            <div class="form__row">
-                <p class="form__label">First Name:</p>
-                <input type="text" name="fname" id="fname" class="form__input">
-            </div>
-            <div class="form__row">
-                <p class="form__label">Last Name:</p>
-                <input type="text" name="lname" id="lname" class="form__input">
-            </div>
-            <div class="form__row">
-                <p class="form__label">Username:</p>
-                <input type="text" name="username" id="username" class="form__input">
-            </div>
-            <div class="form__row">
-                <p class="form__label">Email:</p>
-                <input type="text" name="email" id="email" class="form__input">
-            </div>
-            <div class="form__row">
-                <p class="form__label">Password:</p>
-                <input type="password" name="pw" id="pw" class="form__input">
-            </div>
-            <div class="form__row">
-                <p class="form__label">Confirm Password:</p>
-                <input type="password" name="pw-conf" id="pw-conf" class="form__input">
-            </div>
-            <button type="submit" class="form__submit">Register</button>
-        </form>
     </div>
-
 </body>
 </html>
