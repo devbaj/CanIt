@@ -1,0 +1,17 @@
+<h1 class="header__title">TrashCan</h1>
+{% if "userid" in request.session %}
+<div class="header__dropdown">
+    <button class="header__dropdown-btn">My Profile
+        <i class="fa fa-caret-down"></i>
+        <!-- TODO: add css for dropdown -->
+    </button>
+    <div class="header__dropcontent">
+        <a href="/profile/view/{{request.session.userid}}" class="header__drop-link">View</a>
+        <a href="/profile/edit" class="header_drop-link">Edit</a>
+        <a href="/logout" class="header__drop-link">Log Out</a>
+    </div>
+</div>
+{% else %}
+<a href="/register" class="header__link">Register</a>
+<a href="/login" class="header__link">Log In</a>
+{% endif %}

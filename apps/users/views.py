@@ -3,6 +3,9 @@ from .models import *
 from django.contrib import messages
 # Create your views here.
 
+########################
+# SITE FUNCTIONALITY VIEWS
+########################
 def index(request):
     return render(request, "users/index.html")
 
@@ -72,3 +75,10 @@ def edit_profile_process(request):
     User.objects.update(request.session["userid"], request.POST)
     messages.success(request, "Info updated!")
     return redirect(f"/profile/view/{request.session['userid']}")
+
+########################
+# JS AJAX VIEWS
+########################
+def header(request):
+
+    return render(request, "users/partials/header.html")
