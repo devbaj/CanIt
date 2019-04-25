@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <style>
-       /* Set the size of the div element that contains the map */
-        #map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-        }
-    </style>
+      
+    
+      <meta id="my-data" data-name="{{mark.lat}}" data-other="{{mark.lng}}">
+    
+      <style>
+        /* Set the size of the div element that contains the map */
+          #map {
+          height: 400px;  /* The height is 400 pixels */
+          width: 100%;  /* The width is the width of the web page */
+          }
+      </style>
     </head>
     <body>
     <h3>Trash Can App</h3>
     <!--The div element for the map -->
-
-    {% for mark in location %}
-    {{mark.lat}} {{mark.lng}}
-    {% endfor %}
-    
-    
-
     <div id="map"></div>
     <script>
 // Initialize and add the map
 
+
 function initMap() {
   // The location of Uluru
-    {% for mark in location %}
+  {% for mark in location %}
+    // var djangoData = $('#my-data').data()
     var uluru = {lat: {{mark.lat}}, lng: {{mark.lng}}};
     {% endfor %}
 
   // The map, centered at Uluru
     var map = new google.maps.Map(
         document.getElementById('map'), {zoom: 4, center: uluru});
-  // The marker, positioned at Uluru
-  {% for mark in location %}
+  // The marker, positioned at Ulurus
     var marker = new google.maps.Marker({position: uluru, map: map});
-  {% endfor %}
 }
     </script>
     <!--Load the API from the specified URL

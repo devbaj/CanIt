@@ -27,7 +27,9 @@ def add_marker_process(request):
         newList.append(click_data[key])
         # print(click_data[key])
         print("hello")
+        
     lat = newList[0]
+    print("*"*80)
     lng = newList[1]
     print(" ")
     seed = Marker.objects.create(lat = lat, lng = lng)
