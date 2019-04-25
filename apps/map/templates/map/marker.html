@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
       
-    
-      <meta id="my-data" data-name="{{mark.lat}}" data-other="{{mark.lng}}">
-    
+      {% for marker in location %}
+      <meta class="location" data-name="{{marker.lat}}" data-other="{{marker.lng}}" id="{{marker.id}}">
+      {% endfor %}
+
       <style>
         /* Set the size of the div element that contains the map */
           #map {
@@ -15,6 +17,9 @@
     </head>
     <body>
     <h3>Trash Can App</h3>
+
+    
+
     <!--The div element for the map -->
     <div id="map"></div>
     <script>
@@ -23,16 +28,50 @@
 
 function initMap() {
   // The location of Uluru
-  {% for mark in location %}
-    // var djangoData = $('#my-data').data()
-    var uluru = {lat: {{mark.lat}}, lng: {{mark.lng}}};
-    {% endfor %}
+
+  var lat = [];
+  var lng = [];
+  var markerids = []
+
+  $('.location').each(function() {
+    markerids.push($(this).attr("id"));
+    lat.push($(this).attr("data-name"));
+    lng.push($(this).attr("data-other"));
+    // console.log($(this).attr("data-name"));
+    // console.log($(this).attr("data-other"));
+  });
+  console.log("print them bitch")
+  console.log(markerids)
+  console.log(lat)
+  console.log(lng)
+
+  var markers = []
+
+  for(var i = 0; i < lat.length; i++) {
+    markers.push({
+      "id": markerids[i],
+      "lat": lat[i],
+      "lng": lng[i]
+    })
+  }
+  var uluru = {lat: 47, lng: 122.3321};
+  var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 4, center: uluru});
+
+  console.log("do the shit")
+    console.log(markers);
+    var djangoData = $('#my-data').data()
+    
+    var marker;
+  for(var i = 0; i < markers.length; i++) {
+    marker = {lat: parseFloat(markers[i]["lat"]), lng: parseFloat(markers[i]["lng"])};
+    new google.maps.Marker({position: marker, map: map})
+  }
 
   // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 4, center: uluru});
+
   // The marker, positioned at Ulurus
-    var marker = new google.maps.Marker({position: uluru, map: map});
+    // var marker = new google.maps.Marker({position: uluru, map: map});
 }
     </script>
     <!--Load the API from the specified URL
@@ -43,6 +82,7 @@ function initMap() {
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGuYetgZvm22yoFYdCNgGqA-qbqDv0zi8&callback=initMap">
     </script>
+    
     
     </body>
 </html>
