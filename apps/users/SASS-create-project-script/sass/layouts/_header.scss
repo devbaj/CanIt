@@ -1,0 +1,98 @@
+.header {
+    grid-area: head;
+    background-image: $gradient-blue;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    padding: $default-padding;
+    overflow: hidden;
+    box-shadow: $bottom-shadow;
+    padding-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    &__title {
+        color: $color-white;
+        margin: 0 auto 0 1rem;
+
+        & a {
+            color: $color-white;
+            text-decoration: none;
+        }
+    }
+
+    &__nav {
+        overflow: hidden;
+        padding: $default-padding;
+    }
+
+    &__menuicon {
+        color: $color-white;
+        padding: $default-padding;
+        font-size: 2rem;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: .5rem;
+
+        &:hover {
+            background-color: $color-lightblue;
+        }
+        &:focus {
+            background-color: $color-green;
+            border-bottom-left-radius: 0;
+        }
+        &:before {
+            content: "My Profile";
+            display: inline-block;
+        }
+
+        &:after {
+            display: inline-block;
+        }
+    }
+
+    &__menu {}
+
+    &__menulink {
+        color: $color-black;
+        padding: $default-padding;
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+            background-color: $color-darkgreen;
+            color: $color-white;
+        }
+    }
+
+    &__menulist {
+        z-index: 1;
+
+        &--hidden {
+            display: none;
+        }
+        &--visible {
+            display: block;
+            position: absolute;
+            list-style-type: none;
+            box-shadow: $default-shadow;
+            background-color: $color-green;
+            top: 6.7rem;
+        }
+    }
+
+    &__link {
+        color: $color-white;
+        text-decoration: none;
+        margin: .5rem;
+        padding: $default-padding;
+        border-radius: .5rem;
+        justify-self: flex-end;
+
+        &:hover {
+            background-color: $color-lightblue;
+            box-shadow: $default-shadow;
+        }
+    }
+}

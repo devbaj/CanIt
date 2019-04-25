@@ -1,0 +1,34 @@
+{
+  "name": "SASS-create-project-script",
+  "version": "1.0.0",
+  "description": "This repository contains two bash scripts to generate a modular SCSS folder structure for writing and organizing maintainable style sheets and a second script to delete all the files the script creates (see warnings below on this functionality).  Documentation for this script can also be found by opening the index.html file in a browser (note: this file is only generated if you choose 'Yes' when prompted to create an index.html file).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:sass": "node-sass sass/main.scss ../static/users/css/styles.css -w",
+    "compile:sass": "node-sass sass/main.scss ../static/users/css/styles.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' public/css/styles.comp.css -o public/css/styles.prefixed.css",
+    "compress:css": "node-sass public/css/styles.prefixed.css ../static/users/css/styles.css --output-style compressed",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css",
+    "compress:js": "node-minify --compressor 'gcc' --input 'public/js/app.js' --output '../static/users/js/app.min.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prescottbreeden/SASS-create-project-script.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prescottbreeden/SASS-create-project-script/issues"
+  },
+  "homepage": "https://github.com/prescottbreeden/SASS-create-project-script#readme",
+  "devDependencies": {
+    "concat": "^1.0.3",
+    "hoek": "^6.1.3",
+    "node-minify": "^3.6.0",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.2"
+  }
+}

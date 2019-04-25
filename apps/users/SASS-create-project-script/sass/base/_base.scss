@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    background-color: $color-white;
+    height: 100%;
+}
+
+div { 
+    border-radius: .5rem;
+}
+
+body{
+    height: 100%;
+}
+
+.container{
+    width: auto;
+    display: grid;
+    grid-template-rows: 6rem auto 6rem;
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas: "head  head"
+                         "main  side"
+                         "foot  foot";
+    grid-gap: .5rem;
+    background-image: $background-gradient;
+    border-radius: 0;
+    padding: 0 .5rem;
+    height: 100%;
+}
+
+.profile{
+    grid-area: main;
+}
+
+.content {
+    grid-area: main;
+    padding: $default-padding;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+
+    &__section {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        padding: $default-padding;
+        max-height: 100%;
+    }
+
+    &__title {
+        font-size: 3rem;
+        }
+}

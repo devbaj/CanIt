@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Marker Labels</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+        }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGuYetgZvm22yoFYdCNgGqA-qbqDv0zi8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+      // In the following example, markers appear when the user clicks on the map.
+      // Each marker is labeled with a single alphabetical character.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var labelIndex = 0;
+        
+
+    function initialize() {
+        var bangalore = { lat: 12.97, lng: 77.59 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: bangalore
+        });
+
+        // This event listener calls addMarker() when the map is clicked.
+        google.maps.event.addListener(map, 'click', function(event) {
+            
+            addMarker(event.latLng, map)
+            my_loc = event.latLng
+            this_click = my_loc.toJSON()
+              $.ajax({
+                url: "/add_marker/process",
+                method: "POST",
+                headers: {'X-CSRFToken': '{{ csrf_token }}' },
+                data: this_click
+              })
+            console.log(this_click);
+        });
+        // whatever you send as data, ajax has a data property - pass that data through this property, need to deserialize into json.parse when you're in django - then print it 
+        // for (var key in my_loc){
+        //       if (my_loc.hasOwnProperty(key)){
+        //         console.log(key, dictionary[key]);
+        //       }
+
+        // Add a marker at the center of the map.
+        addMarker(bangalore, map);
+        }
+
+      // Adds a marker to the map.
+        function addMarker(location, map) {
+        // Add the marker at the clicked location, and add the next-available label
+        // from the array of alphabetical characters.
+        var marker = new google.maps.Marker({
+            position: location,
+            label: labels[labelIndex++ % labels.length],
+            map: map
+        });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    </head>
+    <body>
+        
+        <div id="map"></div>
+        
+    </body>
+</html>

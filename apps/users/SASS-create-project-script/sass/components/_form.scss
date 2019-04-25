@@ -1,0 +1,45 @@
+.form{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: space-between;
+
+    &__table {
+        // display: flex;
+        // flex-flow: column nowrap;
+        // align-items: space-around;
+        // justify-content: center;
+    }
+
+    &__row {
+        padding: $default-padding;
+    }
+
+    &__item {
+        padding: $default-padding;
+    }
+
+    &__label {
+
+    }
+
+    &__input {
+        margin-left: 2rem;
+    }
+
+    &__submit {
+        padding: $default-padding;
+        background-color: $color-blue;
+        border: 1px solid $color-lightblue;
+        border-radius: .5rem;
+        font-weight: bold;
+        color: $color-white;
+        margin: 0 25%;
+
+        &:hover {
+            background-color: $color-lightblue;
+            cursor: pointer;
+            box-shadow: $default-shadow;
+        }
+    }
+}

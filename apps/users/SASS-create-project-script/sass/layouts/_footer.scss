@@ -1,0 +1,21 @@
+.footer {
+    grid-area: foot;
+    background-image: $gradient-green;
+    padding: $default-padding;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: $bottom-shadow;
+    padding-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &__attribution {
+        font-size: 1.5rem;
+    }
+
+    &__info {
+        font-size: 1rem;
+    }
+}

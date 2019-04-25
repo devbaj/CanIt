@@ -1,0 +1,18 @@
+$color-white: #eee;
+$color-black: #333;
+$color-red: #8C041D;
+$color-green: #44B78B;
+$color-blue: #11538C;
+$color-lightblue: #0F7CBF;
+$color-brown: #46271A;
+$color-darkgreen: #00261C;
+
+$gradient-blue: linear-gradient(#2a5a86, #064b86);
+$gradient-green: linear-gradient(#76AA8E, #26BA8B);
+$gradient-black: linear-gradient(#444, #222);
+$background-gradient: linear-gradient($color-white, #CAE4DC);
+
+$default-shadow: .2rem .2rem .5rem $color-black; 
+$bottom-shadow: 0 .2rem .5rem $color-black;
+
+$default-padding: 1rem;
