@@ -28,11 +28,14 @@ function initMap() {
     {% for mark in location %}
     var uluru = {lat: {{mark.lat}}, lng: {{mark.lng}}};
     {% endfor %}
+
   // The map, centered at Uluru
     var map = new google.maps.Map(
         document.getElementById('map'), {zoom: 4, center: uluru});
   // The marker, positioned at Uluru
+  {% for mark in location %}
     var marker = new google.maps.Marker({position: uluru, map: map});
+  {% endfor %}
 }
     </script>
     <!--Load the API from the specified URL
