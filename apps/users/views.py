@@ -72,3 +72,6 @@ def edit_profile_process(request):
     User.objects.update(request.session["userid"], request.POST)
     messages.success(request, "Info updated!")
     return redirect(f"/profile/view/{request.session['userid']}")
+
+def header(request):
+    return render(request, "users/partials/header.html")

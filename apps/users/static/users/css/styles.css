@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
+* {
+  margin: 0;
+  padding: 0; }
+
+html {
+  background-color: #eee;
+  height: 100%; }
+
+div {
+  border-radius: .5rem; }
+
+body {
+  height: 100%; }
+
+.container {
+  width: auto;
+  display: grid;
+  grid-template-rows: 6rem auto 6rem;
+  grid-template-columns: 4fr 1fr;
+  grid-template-areas: "head  head" "main  side" "foot  foot";
+  grid-gap: .5rem;
+  background-image: linear-gradient(#eee, #CAE4DC);
+  border-radius: 0;
+  padding: 0 .5rem;
+  height: 100%; }
+
+.profile {
+  grid-area: main; }
+
+.content {
+  grid-area: main;
+  padding: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center; }
+  .content__section {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    max-height: 100%; }
+  .content__title {
+    font-size: 3rem; }
+
+html {
+  font-size: 62.5%;
+  font-family: 'Noto Sans', sans-serif;
+  color: #333; }
+
+h1 {
+  font-weight: bolder;
+  font-size: 4rem; }
+
+h2 {
+  font-weight: bold;
+  text-emphasis: italic;
+  font-size: 3rem; }
+
+body {
+  font-size: 2rem; }
+
+.form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: space-between; }
+  .form__row {
+    padding: 1rem; }
+  .form__item {
+    padding: 1rem; }
+  .form__input {
+    margin-left: 2rem; }
+  .form__submit {
+    padding: 1rem;
+    background-color: #11538C;
+    border: 1px solid #0F7CBF;
+    border-radius: .5rem;
+    font-weight: bold;
+    color: #eee;
+    margin: 0 25%; }
+    .form__submit:hover {
+      background-color: #0F7CBF;
+      cursor: pointer;
+      box-shadow: 0.2rem 0.2rem 0.5rem #333; }
+
+.footer {
+  grid-area: foot;
+  background-image: linear-gradient(#76AA8E, #26BA8B);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 0.2rem 0.5rem #333;
+  padding-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; }
+  .footer__attribution {
+    font-size: 1.5rem; }
+  .footer__info {
+    font-size: 1rem; }
+
+.header {
+  grid-area: head;
+  background-image: linear-gradient(#2a5a86, #064b86);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0.2rem 0.5rem #333;
+  padding-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }
+  .header__title {
+    color: #eee;
+    margin: 0 auto 0 1rem; }
+    .header__title a {
+      color: #eee;
+      text-decoration: none; }
+  .header__nav {
+    overflow: hidden;
+    padding: 1rem; }
+  .header__menuicon {
+    color: #eee;
+    padding: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: .5rem; }
+    .header__menuicon:hover {
+      background-color: #0F7CBF; }
+    .header__menuicon:focus {
+      background-color: #44B78B;
+      border-bottom-left-radius: 0; }
+    .header__menuicon:before {
+      content: "My Profile";
+      display: inline-block; }
+    .header__menuicon:after {
+      display: inline-block; }
+  .header__menulink {
+    color: #333;
+    padding: 1rem;
+    text-decoration: none;
+    display: block; }
+    .header__menulink:hover {
+      background-color: #00261C;
+      color: #eee; }
+  .header__menulist {
+    z-index: 1; }
+    .header__menulist--hidden {
+      display: none; }
+    .header__menulist--visible {
+      display: block;
+      position: absolute;
+      list-style-type: none;
+      box-shadow: 0.2rem 0.2rem 0.5rem #333;
+      background-color: #44B78B;
+      top: 6.7rem; }
+  .header__link {
+    color: #eee;
+    text-decoration: none;
+    margin: .5rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    justify-self: flex-end; }
+    .header__link:hover {
+      background-color: #0F7CBF;
+      box-shadow: 0.2rem 0.2rem 0.5rem #333; }
+
+.sidebar {
+  grid-area: side;
+  background-image: linear-gradient(#444, #222);
+  box-shadow: 0 0.2rem 0.5rem #333; }
