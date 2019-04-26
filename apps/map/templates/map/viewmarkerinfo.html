@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Marker Info | CanIt!</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+    <script src="{% static 'users/js/main.js' %}"></script>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div id="header" class="header"></div>
+
+        <div id="content" class="content">
+            <div class="content__section">
+                <h2 class="content__subtitle">Marker #{{marker.id}}</h2>
+                <p class="content__line">Latitude: {{marker.lat}}</p>
+                <p class="content__line">Longitude: {{marker.lng}}</p>
+                <p class="content__line">Number of Votes: {{marker.votes}}</p>
+                <p class="content__line">Score: {{marker.score}}</p>
+                <p class="content__line">Notes: {{marker.notes}}</p>
+                <p class="content__item">Created by: {{marker.creator.username}}</p>
+                <p class="content__line">Created: {{marker.created_at}}</p>
+                {% if request.session.userid == marker.creator.id %}
+                <a href="/map/marker/{{marker.id}}/edit" class="content__link--button">Edit This Marker</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div id="sidebar" class="sidebar"></div>
+
+        <div id="footer" class="footer"></div>
+
+    </div>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Marker, User, UserManager
 import json
+from django.contriv import messages
 
 
 
@@ -53,3 +54,25 @@ def add_marker_process(request):
 def add_marker(request):
 
     return render(request, 'map/add_marker.html')
+
+def read_one_marker(request, markerid):
+    user = User.objects.get(id=request.session["userid"])
+    this_marker = Marker.objects.get(id=markerid)
+    context = {
+        "user": user,
+        "marker": this_marker
+    }
+    return render(request, 'map/viewmarkerinfo.html', context)
+
+def edit_one_marker(request, markerid):
+    if "userid" not in request.session:
+        return redirect("/nolog")
+    this_marker = Marker.objects.get(id=markerid)
+    user = User.objects.get(id=request.session["userid"])
+    if this_marker.creator != user:
+        messages.error(request, "You cannot edit this marker")
+        return redirect("/dashboard")
+    context = {
+        "marker": this_marker
+    }
+    return render(request, "map/editmarkerinfo.html", context)
