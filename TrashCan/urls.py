@@ -21,5 +21,6 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', include('apps.users.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
-    path('map/', include('apps.map.urls'))
+    path('map/', include('apps.map.urls')),
+    path('events/', include('apps.events.urls'))
 ]
