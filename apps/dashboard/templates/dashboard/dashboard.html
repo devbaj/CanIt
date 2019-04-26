@@ -22,6 +22,8 @@
                     <th class="table__headval">Last Cleaned</th>
                     <th class="table__headval">Notes</th>
                     <th class="table__headval">Vote</th>
+                    <th class="table__headval">Score</th>
+                    <th class="table__headval">Actions</th>
                 </th>
                 {% for marker in markerlist %}
 
@@ -33,8 +35,8 @@
                     <td class="table__item">
                         <form action = "/dashboard/up", method = "POST">
                             {% csrf_token %}
-                                <input type="hidden" name="markerid" value = "{{marker.id}}">  
-                                <button type="submit">^</button>
+                            <input type="hidden" name="markerid" value = "{{marker.id}}">  
+                            <button type="submit">^</button>
                         </form>
                         <form action = "/dashboard/down", method = "POST">
                             {% csrf_token %}
@@ -43,6 +45,8 @@
                         </form>
                             </td>
                         <td>Score: {{marker.score}}</td>
+                        <td><a href= "">Edit  |</a>
+                            <a href= "/map/marker">  View</a></td>
 
                     
                 {% endfor %}
@@ -66,6 +70,7 @@
                 </tr>
                 {% endfor %}
             </table>
+            <a href = "/map/add_marker">Drop a pin!</a>
         </div>
 
         <div id="sidebar" class="sidebar"></div>

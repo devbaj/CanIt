@@ -19,7 +19,7 @@
       </style>
     </head>
     <body>
-    <h3>Trash Can App</h3>
+    <h3>Can It!</h3>
 
     
 
@@ -57,9 +57,9 @@ function initMap() {
       "lng": lng[i]
     })
   }
-  var uluru = {lat: 47, lng: 122.3321};
+  var uluru = {lat: 47.59655584563828 , lng: -122.19240147272495};
   var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 4, center: uluru});
+        document.getElementById('map'), {zoom: 12, center: uluru});
   setMarkers(map, markers);
 }
     
@@ -72,7 +72,7 @@ function setMarkers(map, locations){
     var lng = parseFloat(locations[i]["lng"]);
     // marker = {lat: parseFloat(markers[i]["lat"]), lng: parseFloat(markers[i]["lng"])};
     // new_marker = new google.maps.Marker({position: marker, map: map, clickable: true});
-    var content = "I am marker number " + markid;
+    var content = "A messy area! " + markid;
     // var infoWindow = new google.maps.InfoWindow({
     //   content: infoWindowContent
     // })
@@ -93,6 +93,7 @@ function setMarkers(map, locations){
   //     this.infoWindow.open(map, this);
   //   })
 }
+
   // google.maps.event.addListener(map, 'click', function(marker) {
   // new google.map.InfoWindow()
   
@@ -105,13 +106,16 @@ function setMarkers(map, locations){
     // var marker = new google.maps.Marker({position: uluru, map: map});
 
     </script>
-    // <!--Load the API from the specified URL
+     <!--Load the API from the specified URL
     // * The async attribute allows the browser to render the page while the API loads
     // * The key parameter will contain your own API key (which is not needed for this tutorial)
     // * The callback parameter executes the initMap() function
     // -->
     
-    
+    </div>
+    <a href="/dashboard">Back to Dashboard!</a>
+    <br>
+    <a href="/map/add_marker">Add a new area!</a>
     
     </body>
 </html>
