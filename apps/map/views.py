@@ -13,7 +13,6 @@ def marker(request):
     context = {
         'location': Marker.objects.all()
     }
-    print(context)
 
     return render(request, 'map/marker.html', context)
 

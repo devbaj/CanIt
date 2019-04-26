@@ -2,6 +2,9 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGuYetgZvm22yoFYdCNgGqA-qbqDv0zi8&callback=initMap">
+        </script>
       
       {% for marker in location %}
       <meta class="location" data-name="{{marker.lat}}" data-other="{{marker.lng}}" id="{{marker.id}}">
@@ -57,31 +60,57 @@ function initMap() {
   var uluru = {lat: 47, lng: 122.3321};
   var map = new google.maps.Map(
         document.getElementById('map'), {zoom: 4, center: uluru});
-
-  console.log("do the shit")
-    console.log(markers);
-    var djangoData = $('#my-data').data()
+  setMarkers(map, markers);
+}
     
-    var marker;
-  for(var i = 0; i < markers.length; i++) {
-    marker = {lat: parseFloat(markers[i]["lat"]), lng: parseFloat(markers[i]["lng"])};
-    new google.maps.Marker({position: marker, map: map})
+function setMarkers(map, locations){
+    var markerList= [];
+    // var info_window = new google.maps.InfoWindow({content: ''});
+  for(var i = 0; i < locations.length; i++) {
+    var markid = locations[i]["id"];
+    var lat = parseFloat(locations[i]["lat"]);
+    var lng = parseFloat(locations[i]["lng"]);
+    // marker = {lat: parseFloat(markers[i]["lat"]), lng: parseFloat(markers[i]["lng"])};
+    // new_marker = new google.maps.Marker({position: marker, map: map, clickable: true});
+    var content = "I am marker number " + markid;
+    // var infoWindow = new google.maps.InfoWindow({
+    //   content: infoWindowContent
+    // })
+    latlngset = new google.maps.LatLng(lat, lng);
+    var marker = new google.maps.Marker({title: markid, position: latlngset, map: map, clickable: true});
+    var infowindow = new google.maps.InfoWindow()
+    google.maps.event.addListener(marker, 'click', (function(marker,content,infowindow){
+      return function() {
+        infowindow.setContent(content);
+        infowindow.open(map,marker);
+      };
+    })(marker,content,infowindow))
   }
+  // var infoWindow = new google.maps.InfoWindow({
+  //     content: infoWindowContent
+  //   })
+  // google.maps.event.addListener(new_marker, 'click', function() {
+  //     this.infoWindow.open(map, this);
+  //   })
+}
+  // google.maps.event.addListener(map, 'click', function(marker) {
+  // new google.map.InfoWindow()
+  
+
+
 
   // The map, centered at Uluru
 
   // The marker, positioned at Ulurus
     // var marker = new google.maps.Marker({position: uluru, map: map});
-}
+
     </script>
-    <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGuYetgZvm22yoFYdCNgGqA-qbqDv0zi8&callback=initMap">
-    </script>
+    // <!--Load the API from the specified URL
+    // * The async attribute allows the browser to render the page while the API loads
+    // * The key parameter will contain your own API key (which is not needed for this tutorial)
+    // * The callback parameter executes the initMap() function
+    // -->
+    
     
     
     </body>
