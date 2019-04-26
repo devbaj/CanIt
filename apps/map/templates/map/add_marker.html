@@ -41,7 +41,7 @@
             my_loc = event.latLng
             this_click = my_loc.toJSON()
               $.ajax({
-                url: "/add_marker/process",
+                url: "/map/add_marker/process",
                 method: "POST",
                 headers: {'X-CSRFToken': '{{ csrf_token }}' },
                 data: this_click

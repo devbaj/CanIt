@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Marker
+from .models import Marker, User, UserManager
 import json
 
 
@@ -26,12 +26,12 @@ def add_marker_process(request):
         newList.append(click_data[key])
         # print(click_data[key])
         print("hello")
-        
+    user = User.objects.get(id=request.session["userid"])
     lat = newList[0]
     print("*"*80)
     lng = newList[1]
     print(" ")
-    seed = Marker.objects.create(lat = lat, lng = lng)
+    seed = Marker.objects.create(lat = lat, lng = lng, creator=user)
     print(seed.lat)
     print(seed.lng)
 
@@ -48,7 +48,7 @@ def add_marker_process(request):
     # print(click_data)
     # print(" ")
 
-    return redirect('/add_marker')
+    return redirect('/map/add_marker')
 
 def add_marker(request):
 

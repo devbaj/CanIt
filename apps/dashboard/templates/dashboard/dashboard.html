@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard | CanIt!</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div id="header" class="header"></div>
+
+        <div class="content">
+            <h1 class="content__title">Welcome, {{user.first_name}}</h1>
+            <h2 class="content__subtitle">Littered areas near you:</h2>
+            <table class="table">
+                <th class="table__head">
+                    <th class="table__headval">Distance</th>
+                    <th class="table__headval">Score</th>
+                    <th class="table__headval">Last Cleaned</th>
+                    <th class="table__headval">Notes</th>
+                </th>
+                {% for marker in markerlist %}
+                <tr class="table__row">
+                    <td class="table__item">{{marker.lat}} {{marker.lng}}</td>
+                    <td class="table__item">{{marker.score}}</td>
+                    <td class="table__item">{{marker.updated_at}}</td>
+                    <td class="table__item">{{marker.notes}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <h2 class="content__subtitle">Your dropped pins:</h2>
+            <table class="table">
+                <th class="table__head">
+                    <th class="table__headval">Date Added</th>
+                    <th class="table__headval">Score</th>
+                    <th class="table__headval">Last Voted On</th>
+                    <th class="table__headval">Notes</th>
+                    <th class="table__headval">Votes</th>
+                </th>
+                {% for marker in markerlist %}
+                <tr class="table__row">
+                    <td class="table__item">{{marker.created_at}}</td>
+                    <td class="table__item">{{marker.score}}</td>
+                    <td class="table__item">{{marker.updated_at}}</td>
+                    <td class="table__item">{{marker.notes}}</td>
+                    <td class="table__item">{{marker.votes}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div id="sidebar" class="sidebar"></div>
+
+        <div id="footer" class="footer"></div>
+
+    </div>
+
+</body>
+</html>
