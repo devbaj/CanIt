@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Marker, User, UserManager
 import json
-from django.contriv import messages
+from django.contrib import messages
 
 
 
@@ -76,3 +76,16 @@ def edit_one_marker(request, markerid):
         "marker": this_marker
     }
     return render(request, "map/editmarkerinfo.html", context)
+
+def edit_one_marker_process(request, markerid):
+    if "userid" not in request.session:
+        return redirect("/nolog")
+    this_marker = Marker.objects.get(id=markerid)
+    user = User.objects.get(id=request.session["userid"])
+    if this_marker.creator != user:
+        messages.error(request, "You do not have permission to do that")
+        return redirect("/dashboard")
+    new_notes = request.POST["notes"]
+    this_marker.notes = new_notes
+    this_marker.save()
+    return redirect(f"/map/marker/{markerid}/view")

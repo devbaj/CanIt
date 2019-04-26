@@ -51,8 +51,8 @@
                         </td>
                         <td>{{marker.score}}</td>
                         <td>
-                            <a href= "">Edit</a> | 
-                                <a href= "/map/marker">View</a>
+                            <a href= "/map/marker/{{marker.id}}/edit">Edit</a> | 
+                                <a href= "/map/marker/{{marker.id}}/view">View</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -81,6 +81,7 @@
             </div>
             <div class="content__section">
                 <a href = "/map/add_marker">Drop a pin!</a>
+                <a href="/map/marker" class="content__link">View map</a>
             </div>
         </div>
 
