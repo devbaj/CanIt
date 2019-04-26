@@ -12,7 +12,7 @@ class Marker(models.Model):
     creator = models.ForeignKey(
         User, related_name="creators", on_delete=models.CASCADE)
     score = models.IntegerField(default='0')
-    vites = models.IntegerField(default='0')
+    votes = models.IntegerField(default='0')
     notes = models.TextField(default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
