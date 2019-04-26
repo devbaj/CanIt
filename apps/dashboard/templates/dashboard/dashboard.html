@@ -21,14 +21,30 @@
                     <th class="table__headval">Score</th>
                     <th class="table__headval">Last Cleaned</th>
                     <th class="table__headval">Notes</th>
+                    <th class="table__headval">Vote</th>
                 </th>
                 {% for marker in markerlist %}
+
                 <tr class="table__row">
                     <td class="table__item">{{marker.lat}} {{marker.lng}}</td>
                     <td class="table__item">{{marker.score}}</td>
                     <td class="table__item">{{marker.updated_at}}</td>
                     <td class="table__item">{{marker.notes}}</td>
-                </tr>
+                    <td class="table__item">
+                        <form action = "/dashboard/up", method = "POST">
+                            {% csrf_token %}
+                                <input type="hidden" name="markerid" value = "{{marker.id}}">  
+                                <button type="submit">^</button>
+                        </form>
+                        <form action = "/dashboard/down", method = "POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="markerid" value = "{{marker.id}}">  
+                            <button type="submit">v</button>
+                        </form>
+                            </td>
+                        <td>Score: {{marker.score}}</td>
+
+                    
                 {% endfor %}
             </table>
             <h2 class="content__subtitle">Your dropped pins:</h2>

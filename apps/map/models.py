@@ -9,8 +9,7 @@ class MarkerManager(models.Manager):
 class Marker(models.Model):
     lat = models.CharField(max_length=255)
     lng = models.CharField(max_length=255)
-    creator = models.ForeignKey(
-        User, related_name="creators", on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, related_name="creators", on_delete=models.CASCADE)
     score = models.IntegerField(default='0')
     votes = models.IntegerField(default='0')
     notes = models.TextField(default='')
