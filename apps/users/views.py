@@ -75,3 +75,9 @@ def edit_profile_process(request):
 
 def header(request):
     return render(request, "users/partials/header.html")
+
+def footer(request):
+    return render(request, "users/partials/footer.html")
+
+def sidebar(request):
+    return render(request, "users/partials/sidebar.html")

@@ -71,11 +71,23 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+    
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+    <script src="{% static 'users/js/main.js' %}"></script>
     </head>
     </head>
     <body>
-        
-        <div id="map"></div>
-        <a href = "/dashboard">Back to Dashboard</a>
+        <div class="container">
+          <div id="header" class="header"></div>
+          <div id="content" class="content">
+            <div class="content__section content__section--map">
+              <div id="map" class="map"></div>
+              <a href = "/dashboard">Back to Dashboard</a>
+            </div>
+          </div>
+          <div id="sidebar" class="sidebar"></div>
+          <div id="footer" class="footer"></div>
+        </div>
     </body>
 </html>

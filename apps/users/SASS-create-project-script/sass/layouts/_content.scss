@@ -1,0 +1,30 @@
+.content {
+    grid-area: main;
+    padding: $default-padding;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: space-around;
+
+    &__title {
+        width: 100%;
+        text-align: center;
+    }
+
+    &__subtitle {
+        font-size: 3rem;
+    }
+
+    &__section {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        padding: $default-padding;
+
+        &--map {
+            height: 95%;
+            width: 95%;
+        }
+    }
+}

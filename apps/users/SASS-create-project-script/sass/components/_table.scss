@@ -1,0 +1,22 @@
+.table {
+    text-align: center;
+
+    &__head {
+        background-color: $color-black;
+        color: $color-white;
+    }
+
+    &__headval {
+        padding: $default-padding
+
+    }
+
+    &__row {
+
+    }
+
+    &__item {
+        padding: $default-padding;
+
+    }
+}

@@ -4,29 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login | TrashCan</title>
+    <title>Login | CanIt!</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+    <script src="{% static 'users/js/main.js' %}"></script>
 </head>
 <body>
     
     <div class="container">
+        
+        <div id="header" class="header"></div>
 
-        <div class="logform">
-            <h1 class="logform__title">Log In</h1>
-            <form action="/login/process" method="post">
-            {% csrf_token %}
-                <table class="logform__table">
-                    <tr class="logform__table">
-                        <td class="logform__item">Email:</td>
-                        <td class="logform__item"><input type="text" name="email" id="email" class="logform__input"></td>
-                    </tr>
-                    <tr class="logform__row">
-                        <td class="logform__item">Password:</td>
-                        <td class="logform__item"><input type="password" name="pw" id="pw" class="logform__input"></td>
-                    </tr>
-                </table>
-                <button type="submit" class="logform__btn">Log In</button>
-            </form>
+        <div class="content" id="content">
+            <div class="content__section">
+                <h1 class="content__title">Log In</h1>
+                <form action="/login/process" method="post" class="form">
+                {% csrf_token %}
+                    <table class="form__table">
+                        <tr class="form__table">
+                            <td class="form__item">Email:</td>
+                            <td class="form__item"><input type="text" name="email" id="email" class="form__input"></td>
+                        </tr>
+                        <tr class="form__row">
+                            <td class="form__item">Password:</td>
+                            <td class="form__item"><input type="password" name="pw" id="pw" class="form__input"></td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="form__submit">Log In</button>
+                </form>
+            </div>
         </div>
+
+        <div id="sidebar" class="sidebar"></div>
+        <div id="footer" class="footer"></div>
 
     </div>
 

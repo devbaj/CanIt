@@ -17,14 +17,28 @@
           width: 100%;  /* The width is the width of the web page */
           }
       </style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+    <script src="{% static 'users/js/main.js' %}"></script>
     </head>
     <body>
-    <h3>Can It!</h3>
-
     
+    <div class="container">
+
+      <div id="header" class="header"></div>
+      <div id="content" class="content">
+        <div class="content__section content__section--map">
+          <div id="map"></div>
+        </div>
+        <div class="content__section">
+          <p><a href="/dashboard">Back to Dashboard!</a></p>
+          <p><a href="/map/add_marker">Add a new area!</a></p>
+        </div>
+      <div id="footer" class="footer"></div>
+
+    </div>
 
     <!--The div element for the map -->
-    <div id="map"></div>
     <script>
 // Initialize and add the map
 
@@ -113,9 +127,6 @@ function setMarkers(map, locations){
     // -->
     
     </div>
-    <a href="/dashboard">Back to Dashboard!</a>
-    <br>
-    <a href="/map/add_marker">Add a new area!</a>
     
     </body>
 </html>

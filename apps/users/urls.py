@@ -12,5 +12,7 @@ urlpatterns = [
     path('profile/view/<int:userid>', views.profile_view),
     path('profile/edit', views.edit_profile_form),
     path('profile/edit/process', views.edit_profile_process),
-    path('header', views.header)
+    path('header', views.header),
+    path('footer', views.footer),
+    path('sidebar', views.sidebar)
 ]

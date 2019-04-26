@@ -8,7 +8,7 @@
     padding: $default-padding;
     overflow: hidden;
     box-shadow: $bottom-shadow;
-    padding-top: 0;
+    padding-top: .5rem;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 
@@ -78,7 +78,7 @@
             list-style-type: none;
             box-shadow: $default-shadow;
             background-color: $color-green;
-            top: 6.7rem;
+            top: 5.1rem;
         }
     }
 
