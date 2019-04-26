@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User, UserManager, Marker
+from .models import User, UserManager, Marker, Event
 
 # Create your views here.
 
@@ -8,9 +8,11 @@ def dashboard(request):
         return redirect("/nolog")
     markerlist = Marker.objects.all()
     user = User.objects.get(id=request.session["userid"])
+    events = Event.objects.all()
     context = {
         "markerlist": markerlist,
-        "user": user
+        "user": user,
+        "events": events
     
     }
     return render(request, "dashboard/dashboard.html", context)

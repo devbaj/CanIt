@@ -32,7 +32,6 @@
                         <th class="table__headval">Events</th>
                     </thead>
                     {% for marker in markerlist %}
-
                     <tr class="table__row">
                         <td class="table__item">{{marker.lat|truncatechars_html:4}} {{marker.lng|truncatechars_html:4}}</td>
                         <td class="table__item">{{marker.votes}}</td>
@@ -55,7 +54,14 @@
                             <a href= "/map/marker/{{marker.id}}/edit">Edit</a> | 
                                 <a href= "/map/marker/{{marker.id}}/view">View</a>
                         </td>
-                        <td class="table__item">{{marker.events|length}} | <a href="/events/create/{{marker.id}}">Create New</a></td>
+                        <td class="table__item">
+                            <ul class="table__list">
+                        {% for event in events %}
+                            {% if event.spot == marker %}
+                                <li class="table__li"><a href="/events/view/{{event.id}}">Event {{event.id}}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <a href="/events/create/{{marker.id}}">Create New</a></td>
                     </tr>
                     {% endfor %}
                 </table>
