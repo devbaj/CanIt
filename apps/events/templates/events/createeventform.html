@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create an Event | CanIt!</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+    <script src="{% static 'users/js/main.js' %}"></script>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div id="header" class="header"></div>
+
+        <div id="content" class="content">
+            <div class="content__section">
+                <h2 class="content__subtitle">New Event for Marker #{{marker.id}}</h2>
+                <form action="/events/create/{{marker.id}}/process" method="post" class="form">
+                {% csrf_token %}
+                    <table class="form__table">
+                        <tr class="form__row">
+                            <td class="form__item">Title:</td>
+                            <td class="form__item"><input type="text" name="title" id="title" class="form__input"></td>
+                        </tr>
+                        <tr class="form__row">
+                            <td class="form__item">Date:</td>
+                            <td class="form__item"><input type="date" name="date" id="date" class="form__input"></td>
+                        </tr>
+                        <tr class="form__row">
+                            <td class="form__item">Time:</td>
+                            <td class="form__item"><input type="time" name="time" id="time" class="form__input"></td>
+                        </tr>
+                        <tr class="form__row">
+                            <td class="form__item">Notes:</td>
+                            <td class="form__item"><textarea name="notes" id="notes" cols="30" rows="5" class="form__input"></textarea></td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="form__submit">Create</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="sidebar" class="sidebar"></div>
+
+        <div id="footer" class="footer"></div>
+
+    </div>
+
+</body>
+</html>

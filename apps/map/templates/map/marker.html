@@ -1,50 +1,15 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGuYetgZvm22yoFYdCNgGqA-qbqDv0zi8&callback=initMap">
-        </script>
-      
-      {% for marker in location %}
-      <meta class="location" data-name="{{marker.lat}}" data-other="{{marker.lng}}" id="{{marker.id}}">
-      {% endfor %}
-
-      <style>
-        /* Set the size of the div element that contains the map */
-          #map {
-          height: 400px;  /* The height is 400 pixels */
-          width: 100%;  /* The width is the width of the web page */
-          }
-      </style>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
-    <script src="{% static 'users/js/main.js' %}"></script>
-    </head>
-    <body>
-    
-    <div class="container">
-
-      <div id="header" class="header"></div>
-      <div id="content" class="content">
-        <div class="content__section content__section--map">
-          <div id="map"></div>
-        </div>
-        <div class="content__section">
-          <p><a href="/dashboard">Back to Dashboard!</a></p>
-          <p><a href="/map/add_marker">Add a new area!</a></p>
-        </div>
-      <div id="footer" class="footer"></div>
-
-    </div>
-
-    <!--The div element for the map -->
-    <script>
-// Initialize and add the map
-
-
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Map Markers | CanIt!</title>
+  {% for marker in location %}
+  <meta class="location" data-name="{{marker.lat}}" data-other="{{marker.lng}}" id="{{marker.id}}">
+  {% endfor %}
+<script>
 function initMap() {
-  // The location of Uluru
 
   var lat = [];
   var lng = [];
@@ -54,8 +19,6 @@ function initMap() {
     markerids.push($(this).attr("id"));
     lat.push($(this).attr("data-name"));
     lng.push($(this).attr("data-other"));
-    // console.log($(this).attr("data-name"));
-    // console.log($(this).attr("data-other"));
   });
   console.log("print them bitch")
   console.log(markerids)
@@ -76,20 +39,14 @@ function initMap() {
         document.getElementById('map'), {zoom: 12, center: uluru});
   setMarkers(map, markers);
 }
-    
+
 function setMarkers(map, locations){
     var markerList= [];
-    // var info_window = new google.maps.InfoWindow({content: ''});
   for(var i = 0; i < locations.length; i++) {
     var markid = locations[i]["id"];
     var lat = parseFloat(locations[i]["lat"]);
     var lng = parseFloat(locations[i]["lng"]);
-    // marker = {lat: parseFloat(markers[i]["lat"]), lng: parseFloat(markers[i]["lng"])};
-    // new_marker = new google.maps.Marker({position: marker, map: map, clickable: true});
     var content = "A messy area! " + markid;
-    // var infoWindow = new google.maps.InfoWindow({
-    //   content: infoWindowContent
-    // })
     latlngset = new google.maps.LatLng(lat, lng);
     var marker = new google.maps.Marker({title: markid, position: latlngset, map: map, clickable: true});
     var infowindow = new google.maps.InfoWindow()
@@ -100,33 +57,33 @@ function setMarkers(map, locations){
       };
     })(marker,content,infowindow))
   }
-  // var infoWindow = new google.maps.InfoWindow({
-  //     content: infoWindowContent
-  //   })
-  // google.maps.event.addListener(new_marker, 'click', function() {
-  //     this.infoWindow.open(map, this);
-  //   })
 }
-
-  // google.maps.event.addListener(map, 'click', function(marker) {
-  // new google.map.InfoWindow()
-  
-
-
-
-  // The map, centered at Uluru
-
-  // The marker, positioned at Ulurus
-    // var marker = new google.maps.Marker({position: uluru, map: map});
-
-    </script>
-     <!--Load the API from the specified URL
-    // * The async attribute allows the browser to render the page while the API loads
-    // * The key parameter will contain your own API key (which is not needed for this tutorial)
-    // * The callback parameter executes the initMap() function
-    // -->
+</script>
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGuYetgZvm22yoFYdCNgGqA-qbqDv0zi8&callback=initMap">
+  </script>
+  <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+  <script src="{% static 'users/js/main.js' %}"></script>
+</head>
+<body>
     
+  <div class="container">
+
+    <div id="header" class="header"></div>
+    <div id="content" class="content">
+      <div class="content__section content__section--map">
+        <div id="map" class="map"></div>
+      </div>
+      <div class="content__section">
+        <p><a href="/dashboard">Back to Dashboard!</a></p>
+        <p><a href="/map/add_marker">Add a new area!</a></p>
+      </div>
     </div>
-    
-    </body>
+    <div id="sidebar" class="sidebar"></div>
+    <div id="footer" class="footer"></div>
+  </div>
+    <!--The div element for the map -->
+</body>
 </html>

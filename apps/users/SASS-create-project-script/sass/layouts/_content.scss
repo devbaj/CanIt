@@ -21,10 +21,11 @@
         align-items: center;
         justify-content: center;
         padding: $default-padding;
+        text-align: center;
 
         &--map {
-            height: 95%;
-            width: 95%;
+            min-height: 95%;
+            min-width: 95%;
         }
     }
 }

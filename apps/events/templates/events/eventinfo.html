@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View Event | CanIt!</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+    <script src="{% static 'users/js/main.js' %}"></script>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div id="header" class="header"></div>
+
+        <div id="content" class="content">
+            <div class="content__section">
+                <h2 class="content__subtitle">Event {{event.id}}</h2>
+                <p class="content__line">Title: {{event.title}}</p>
+                <p class="content__line">Date: {{event.date}}</p>
+                <p class="content__line">Time: {{event.time}}</p>
+                <p class="content__line">Notes: {{event.notes}}</p>
+                <p class="content__line">Host: {{event.host.first_name}} {{event.host.last_name}}</p>
+                <p class="content__line">Spot: <a href="/map/marker/{{event.spot.id}}/view">{{event.spot.id}}</a></p>
+                <p class="content__line">
+                    {% if attendee in event.attendees %}
+                    <ul class="content__ulist">
+                        {% for attendee in event.attendees %}
+                        <li class="content__li">{{attendee.username}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    Nobody has joined this event yet.
+                    {% endif %}
+                </p>
+                {% if request.session.userid == event.host.id %}
+                    <a href="/events/{{event.id}}/destroy" class="content__link">Cancel Event</a>
+                {% elif user in event.attendees %}
+                    <a href="/events/{{event.id}}/leave" class="content__link">Leave Event</a>
+                {% else %}
+                    <a href="/events/{{event.id}}/join" class="content__link">Join Event</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div id="sidebar" class="sidebar"></div>
+
+        <div id="footer" class="footer"></div>
+
+    </div>
+
+</body>
+</html>

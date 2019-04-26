@@ -29,6 +29,7 @@
                         <th class="table__headval">Vote</th>
                         <th class="table__headval">Score</th>
                         <th class="table__headval">Actions</th>
+                        <th class="table__headval">Events</th>
                     </thead>
                     {% for marker in markerlist %}
 
@@ -54,6 +55,7 @@
                             <a href= "/map/marker/{{marker.id}}/edit">Edit</a> | 
                                 <a href= "/map/marker/{{marker.id}}/view">View</a>
                         </td>
+                        <td class="table__item">{{marker.events|length}} | <a href="/events/create/{{marker.id}}">Create New</a></td>
                     </tr>
                     {% endfor %}
                 </table>

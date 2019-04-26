@@ -7,7 +7,7 @@
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-       #map {
+      #map {
         height: 400px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
         }
@@ -74,20 +74,21 @@
     
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
     <script src="{% static 'users/js/main.js' %}"></script>
-    </head>
-    </head>
-    <body>
-        <div class="container">
-          <div id="header" class="header"></div>
-          <div id="content" class="content">
-            <div class="content__section content__section--map">
-              <div id="map" class="map"></div>
-              <a href = "/dashboard">Back to Dashboard</a>
-            </div>
-          </div>
-          <div id="sidebar" class="sidebar"></div>
-          <div id="footer" class="footer"></div>
-        </div>
-    </body>
+</head>
+<body>
+
+  <div class="container">
+    <div id="header" class="header"></div>
+    <div id="content" class="content">
+      <div class="content__section content__section--map">
+        <div id="map" class="map"></div>
+        <a href = "/dashboard">Back to Dashboard</a>
+      </div>
+    </div>
+    <div id="sidebar" class="sidebar"></div>
+    <div id="footer" class="footer"></div>
+  </div>
+</body>
 </html>
